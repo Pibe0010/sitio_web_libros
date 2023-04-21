@@ -1,0 +1,37 @@
+{% include 'sitio/cabecera.html' %}
+
+
+<form class="d-flex">
+    <input class="form-control me-sm-2" type="search" placeholder="Buscar libro">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+<br>        
+
+
+    <div class="row" style="display: flex; align-items: center; justify-content: center;">
+        {% for libro in libros %}
+        <div class="col-3">
+            <div class="card">
+                <img class="card-img-top" src="/sitio/img/{{ libro[2] }}" alt="Title">
+                <div class="card-body">
+                    <h4 class="card-title">{{ libro[1] }}</h4>
+                    <p class="card-text">
+                        <a name="" id="" class="btn btn-primary" href="{{ libro[3] }}" role="button"
+                        style="display: block; align-items: center; justify-content: center; text-align: center;"
+                        
+                        >Descargar</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+        
+    </div>
+
+
+
+
+
+
+{% include 'sitio/pie.html' %}

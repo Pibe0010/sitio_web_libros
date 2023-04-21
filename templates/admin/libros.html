@@ -1,0 +1,104 @@
+{% include 'admin/cabecera.html' %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <br />
+
+      <div class="card">
+        <div class="card-header">Datos del libro</div>
+        <div class="card-body">
+          <form action="/admin/libros/guardar" method="post" enctype="multipart/form-data">
+
+            <div class="mb-3">
+              <label for="txtNombre" class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                name="txtNombre"
+                id="txtNombre"
+                aria-describedby="helpId"
+                placeholder="Escriba el nombre del libro"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="txtImagen" class="form-label">Imagen</label>
+              <input
+                type="file"
+                class="form-control"
+                name="txtImagen"
+                id="txtImagen"
+                aria-describedby="helpId"
+                placeholder="Seleccione La imagen"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="txtURL" class="form-label">URL Descarga</label>
+              <input
+                type="text"
+                class="form-control"
+                name="txtURL"
+                id="txtURL"
+                aria-describedby="helpId"
+                placeholder="Escriba la URL"/>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Agregar</button>
+          </form>
+        </div>
+        <div class="card-footer text-muted">
+
+        </div>
+      </div>
+    </div>
+      <div class="col-md-7">
+            
+                <table class="table table-bordered">
+                    <br>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>URL</th>
+                            <th>Acciones</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for libro in libros %}
+                        <tr>
+                            <td>{{ libro[0] }}</td>
+                            <td>{{ libro[1] }}</td>
+
+                            <td>
+                                <img width="60" src="/sitio/img/{{ libro[2] }}" class="img-fluid rounded-top" alt="imagen libros">
+                                
+                            </td>
+
+                            <td>
+                              
+                              
+                              <a name="" id="" class="btn btn-success" href="{{ libro[3] }}" role="button"> Enlace </a>
+                              
+                            </td>
+
+                            <td>
+                                
+                                <form action="/admin/libros/borrar" method="post">
+                                    <input value="{{ libro[0] }}" type="hidden" name="txtID" id="txtID" >
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            
+    </div>
+  </div>
+
+
+{% include 'admin/pie.html' %}
